@@ -25,7 +25,7 @@ const options = {
         },
         servers: [
             {
-                url: "https://guardians-of-wildlife-backend.onrender.com",
+                url: process.env.BASE_URL || "https://guardians-of-wildlife-backend.onrender.com",
             },
         ],
     },
@@ -50,5 +50,6 @@ module.exports = app;
 
 
 //http://localhost:8000/api-docs/
+
 
 
