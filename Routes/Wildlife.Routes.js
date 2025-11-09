@@ -179,8 +179,9 @@ let { addAnimal, getAnimalById, getAnimals, updateAnimal, deleteAnimal } = requi
 
 WildlifeRouter.post('/add', addAnimal);
 WildlifeRouter.get('/show', getAnimals);
-WildlifeRouter.get('/:id', getAnimalById);
-WildlifeRouter.put('/:id', updateAnimal);
-WildlifeRouter.delete('/:id', deleteAnimal);
+WildlifeRouter.get('/show/:id', getAnimalById);
+WildlifeRouter.put('/update/:id', updateAnimal);
+WildlifeRouter.delete('/delete/:id', deleteAnimal);
+
 
 module.exports = WildlifeRouter;
