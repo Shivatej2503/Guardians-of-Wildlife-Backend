@@ -170,8 +170,9 @@ let {
 
 JoinTeamRouter.post('/add', joinTeam); // POST http://localhost:8000/jointeam/add
 JoinTeamRouter.get('/show', getTeamMembers); // GET http://localhost:8000/jointeam/show
-JoinTeamRouter.get('/:id', getTeamMemberById); // GET http://localhost:8000/jointeam/:id
-JoinTeamRouter.put('/:id', updateTeamMember); // PUT http://localhost:8000/jointeam/:id
-JoinTeamRouter.delete('/:id', deleteTeamMember); // DELETE http://localhost:8000/jointeam/:id
+JoinTeamRouter.get('/show/:id', getTeamMemberById); // GET http://localhost:8000/jointeam/:id
+JoinTeamRouter.put('/update/:id', updateTeamMember); // PUT http://localhost:8000/jointeam/:id
+JoinTeamRouter.delete('/delete/:id', deleteTeamMember); // DELETE http://localhost:8000/jointeam/:id
+
 
 module.exports = JoinTeamRouter;
