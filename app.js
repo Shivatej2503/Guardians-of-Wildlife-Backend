@@ -9,47 +9,42 @@ const JoinTeamRoutes = require('./Routes/JoinTeam.Routes');
 const ProgramRoutes = require('./Routes/Program.Routes');
 const ContactUsRoutes = require('./Routes/ContactUs.Routes');
 
-// ✅ Use Morgan for logging all HTTP requests
+// ✅ Use Morgan for logging
 app.use(morgan('dev'));
 app.use(express.json());
 
-
-//Swagger Setup
+// ✅ Swagger Setup
 const options = {
-    definition: {
-        openapi: "3.0.0",
-        info: {
-            title: "Save Wildlife API",
-            version: "1.0.0",
-            description: "API documentation for Save Wildlife project",
-        },
-        servers: [
-            {
-                url: process.env.BASE_URL || "https://guardians-of-wildlife-backend.onrender.com",
-            },
-        ],
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Save Wildlife API",
+      version: "1.0.0",
+      description: "API documentation for Save Wildlife project",
     },
-    apis: ["./Routes/*.js"], // Path to the API docs
+    servers: [
+      {
+        url: process.env.BASE_URL || "https://guardians-of-wildlife-backend.onrender.com",
+      },
+    ],
+  },
+  apis: ["./Routes/*.js"],
 };
 
 const swaggerSpec = swaggerJsDoc(options);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Middleware to log requests
+// ✅ Register routes
+app.use('/api/wildlife', wildRoutes);
+app.use('/api/jointeam', JoinTeamRoutes);
+app.use('/api/programs', ProgramRoutes);
+app.use('/api/contactus', ContactUsRoutes);
 
-app.use(express.json());
-app.use('/wildlife', wildRoutes);
-app.use('/jointeam', JoinTeamRoutes);
-app.use('/programs', ProgramRoutes);
-app.use('/contactus', ContactUsRoutes);
-
+// ✅ Root route (fixes 404 on Render)
+app.get('/', (req, res) => {
+  res.send('🦁 Guardians of Wildlife Backend is running successfully! Visit /api-docs for documentation.');
+});
 
 module.exports = app;
 
-
-
-
-//http://localhost:8000/api-docs/
-
-
-
+// Example: http://localhost:8000/api-docs/
