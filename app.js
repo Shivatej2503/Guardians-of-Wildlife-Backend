@@ -35,10 +35,10 @@ const swaggerSpec = swaggerJsDoc(options);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // ✅ Register routes
-app.use('/api/wildlife', wildRoutes);
-app.use('/api/jointeam', JoinTeamRoutes);
-app.use('/api/programs', ProgramRoutes);
-app.use('/api/contactus', ContactUsRoutes);
+app.use('/wildlife', wildRoutes);
+app.use('/jointeam', JoinTeamRoutes);
+app.use('/programs', ProgramRoutes);
+app.use('/contactus', ContactUsRoutes);
 
 // ✅ Root route (fixes 404 on Render)
 app.get('/', (req, res) => {
@@ -48,3 +48,4 @@ app.get('/', (req, res) => {
 module.exports = app;
 
 // Example: http://localhost:8000/api-docs/
+
